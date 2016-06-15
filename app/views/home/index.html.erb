@@ -23,7 +23,7 @@
           <td><%= office_space["attributes"]["no-of-seats"] %></td>
           <td><%= office_space["relationships"]["city"]["data"] %></td>
           <td>
-            <% if true || can_manage_items %>
+            <% if can_manage_items %>
               <%= link_to "mark featured", "/featured/#{office_space['id']}"%>
             <% end %>
           </td>
