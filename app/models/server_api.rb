@@ -24,13 +24,20 @@ class ServerApi
     {"errors" => true, "message" => e.message}
   end
 
-  def parse_server_data_tojson(server_response)
-    JSON.parse(server_response)
-  end
-
   def get_user(id:)
     parse_server_data_tojson(RestClient.post("#{api_url}/api/v1/get_user", { id: id } ))
   rescue RestClient::ResourceNotFound => e
     {"errors" => true, "message" => e.message}
   end
+
+  def mark_work_space_featured(work_space_id:)
+    parse_server_data_tojson(RestClient.post("#{api_url}/api/v1/mark_featured", { id: work_space_id } ))
+  rescue RestClient::ResourceNotFound => e
+    {"errors" => true, "message" => e.message}
+  end
+
+  def parse_server_data_tojson(server_response)
+    JSON.parse(server_response)
+  end
+  
 end

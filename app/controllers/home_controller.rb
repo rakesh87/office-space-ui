@@ -37,4 +37,15 @@ class HomeController < ApplicationController
     redirect_to root_url
   end
 
+  def mark_work_spce_featured
+    work_spce_id = params[:id]
+    work_space = ServerApi.new.mark_work_space_featured(work_space_id: work_spce_id)
+    if work_space['data'].present?
+      @spaces = ServerApi.new.office_spaces
+      render :index
+    else
+      redirect_to root_url
+    end
+  end
+
 end
