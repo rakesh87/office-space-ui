@@ -34,3 +34,4 @@ group :development do
   gem 'spring'
 end
 
+gem 'rest-client', '~> 1.8'

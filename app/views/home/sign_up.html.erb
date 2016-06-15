@@ -1,10 +1,17 @@
 <div class="container">
   <% if defined?(@message) && @message.present? %>
   <div class="alert alert-warning" role="alert">
-    <strong>Warning!</strong> <%= @message %>
+    <strong>Warning!</strong> 
+    <ul>
+      <% @message.each do |key, value_array| %>
+        <li>
+          <%= key %> : <%= value_array.first || 'no good' %>
+        </li>
+      <% end %>
+    </ul>
   </div>
   <% end %>
-  <%= form_tag("/login", :method=>'post') do %>
+  <%= form_tag("/register", :method=>'post') do %>
   <fieldset class="form-group">
     <label for="email">Email</label>
     <%= text_field_tag "email", nil, type: "email", class: "form-control", id: "l-email", placeholder: "Enter email" %>
@@ -13,6 +20,10 @@
     <label for="password">Password</label>
     <%= text_field_tag "password", nil, type: "password", class: "form-control", id: "l-password", placeholder: "Enter Password" %>
   </fieldset>
-    <button type="submit" class="btn btn-primary">Sign In</button>
+  <fieldset class="form-group">
+    <label for="passwordConfirmation">Password</label>
+    <%= text_field_tag "password_confirmation", nil, type: "password", class: "form-control", id: "l-password", placeholder: "Retype Password" %>
+  </fieldset>
+    <button type="submit" class="btn btn-primary">Register</button>
   <% end %>
 </div>
